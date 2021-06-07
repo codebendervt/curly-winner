@@ -1,4 +1,4 @@
-import init, { Hello } from "./pkg/wasm_game_of_life";
+import init, { Hello } from "hello";
 
 init()
     .then(() => {
