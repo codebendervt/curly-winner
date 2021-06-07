@@ -1,0 +1,9 @@
+{
+  "modules": true,
+  "plugins": {
+    "autoprefixer": true,
+    "tailwindcss" : "tailwind.config.js",
+  }
+}
+
+//findout why it changes the css
