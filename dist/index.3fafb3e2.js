@@ -381,7 +381,219 @@ function hmrAcceptRun(bundle/*: ParcelRequire */ , id/*: string */ ) {
 }
 
 },{}],"5rkFb":[function(require,module,exports) {
-console.log("hello");
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _hello = require("hello");
+var _helloDefault = parcelHelpers.interopDefault(_hello);
+_helloDefault.default().then(()=>{
+    const helloWorld = _hello.Hello.new('so have we found it');
+    console.log(helloWorld.message());
+}); // let doc = document.getElementById("hello")
+ // console.log(doc)
+ // doc.setAttribute('data-text','We Work')
+
+},{"hello":"2sMtW","@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}],"2sMtW":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/**
+*/ parcelHelpers.export(exports, "Hello", ()=>Hello
+);
+var _wasmGameOfLifeBgWasm = require("./wasm_game_of_life_bg.wasm");
+var _wasmGameOfLifeBgWasmDefault = parcelHelpers.interopDefault(_wasmGameOfLifeBgWasm);
+let wasm;
+let cachedTextDecoder = new TextDecoder('utf-8', {
+    ignoreBOM: true,
+    fatal: true
+});
+cachedTextDecoder.decode();
+let cachegetUint8Memory0 = null;
+function getUint8Memory0() {
+    if (cachegetUint8Memory0 === null || cachegetUint8Memory0.buffer !== wasm.memory.buffer) cachegetUint8Memory0 = new Uint8Array(wasm.memory.buffer);
+    return cachegetUint8Memory0;
+}
+function getStringFromWasm0(ptr, len) {
+    return cachedTextDecoder.decode(getUint8Memory0().subarray(ptr, ptr + len));
+}
+let WASM_VECTOR_LEN = 0;
+let cachedTextEncoder = new TextEncoder('utf-8');
+const encodeString = typeof cachedTextEncoder.encodeInto === 'function' ? function(arg, view) {
+    return cachedTextEncoder.encodeInto(arg, view);
+} : function(arg, view) {
+    const buf = cachedTextEncoder.encode(arg);
+    view.set(buf);
+    return {
+        read: arg.length,
+        written: buf.length
+    };
+};
+function passStringToWasm0(arg, malloc, realloc) {
+    if (realloc === undefined) {
+        const buf = cachedTextEncoder.encode(arg);
+        const ptr = malloc(buf.length);
+        getUint8Memory0().subarray(ptr, ptr + buf.length).set(buf);
+        WASM_VECTOR_LEN = buf.length;
+        return ptr;
+    }
+    let len = arg.length;
+    let ptr = malloc(len);
+    const mem = getUint8Memory0();
+    let offset = 0;
+    for(; offset < len; offset++){
+        const code = arg.charCodeAt(offset);
+        if (code > 127) break;
+        mem[ptr + offset] = code;
+    }
+    if (offset !== len) {
+        if (offset !== 0) arg = arg.slice(offset);
+        ptr = realloc(ptr, len, len = offset + arg.length * 3);
+        const view = getUint8Memory0().subarray(ptr + offset, ptr + len);
+        const ret = encodeString(arg, view);
+        offset += ret.written;
+    }
+    WASM_VECTOR_LEN = offset;
+    return ptr;
+}
+let cachegetInt32Memory0 = null;
+function getInt32Memory0() {
+    if (cachegetInt32Memory0 === null || cachegetInt32Memory0.buffer !== wasm.memory.buffer) cachegetInt32Memory0 = new Int32Array(wasm.memory.buffer);
+    return cachegetInt32Memory0;
+}
+class Hello {
+    static __wrap(ptr) {
+        const obj = Object.create(Hello.prototype);
+        obj.ptr = ptr;
+        return obj;
+    }
+    __destroy_into_raw() {
+        const ptr = this.ptr;
+        this.ptr = 0;
+        return ptr;
+    }
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_hello_free(ptr);
+    }
+    /**
+    * @param {string} name
+    * @returns {Hello}
+    */ static new(name) {
+        var ptr0 = passStringToWasm0(name, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
+        var len0 = WASM_VECTOR_LEN;
+        var ret = wasm.hello_new(ptr0, len0);
+        return Hello.__wrap(ret);
+    }
+    /**
+    * @returns {string}
+    */ message() {
+        try {
+            const retptr = wasm.__wbindgen_add_to_stack_pointer(-16);
+            wasm.hello_message(retptr, this.ptr);
+            var r0 = getInt32Memory0()[retptr / 4 + 0];
+            var r1 = getInt32Memory0()[retptr / 4 + 1];
+            return getStringFromWasm0(r0, r1);
+        } finally{
+            wasm.__wbindgen_add_to_stack_pointer(16);
+            wasm.__wbindgen_free(r0, r1);
+        }
+    }
+}
+async function load(module, imports) {
+    if (typeof Response === 'function' && module instanceof Response) {
+        if (typeof WebAssembly.instantiateStreaming === 'function') try {
+            return await WebAssembly.instantiateStreaming(module, imports);
+        } catch (e) {
+            if (module.headers.get('Content-Type') != 'application/wasm') console.warn("`WebAssembly.instantiateStreaming` failed because your server does not serve wasm with `application/wasm` MIME type. Falling back to `WebAssembly.instantiate` which is slower. Original error:\n", e);
+            else throw e;
+        }
+        const bytes = await module.arrayBuffer();
+        return await WebAssembly.instantiate(bytes, imports);
+    } else {
+        const instance = await WebAssembly.instantiate(module, imports);
+        if (instance instanceof WebAssembly.Instance) return {
+            instance,
+            module
+        };
+        else return instance;
+    }
+}
+async function init(input) {
+    if (typeof input === 'undefined') input = new URL(_wasmGameOfLifeBgWasmDefault.default, _wasmGameOfLifeBgWasmDefault.default);
+    const imports = {
+    };
+    imports.wbg = {
+    };
+    imports.wbg.__wbindgen_throw = function(arg0, arg1) {
+        throw new Error(getStringFromWasm0(arg0, arg1));
+    };
+    if (typeof input === 'string' || typeof Request === 'function' && input instanceof Request || typeof URL === 'function' && input instanceof URL) input = fetch(input);
+    const { instance , module  } = await load(await input, imports);
+    wasm = instance.exports;
+    init.__wbindgen_wasm_module = module;
+    return wasm;
+}
+exports.default = init;
+
+},{"./wasm_game_of_life_bg.wasm":"2gzKN","@parcel/transformer-js/src/esmodule-helpers.js":"367CR"}],"2gzKN":[function(require,module,exports) {
+module.exports = require('./bundle-url').getBundleURL() + "wasm_game_of_life_bg.fd08811f.wasm";
+
+},{"./bundle-url":"3seVR"}],"3seVR":[function(require,module,exports) {
+"use strict";
+/* globals document:readonly */ var bundleURL = null;
+function getBundleURLCached() {
+    if (!bundleURL) bundleURL = getBundleURL();
+    return bundleURL;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+        if (matches) return getBaseURL(matches[0]);
+    }
+    return '/';
+}
+function getBaseURL(url) {
+    return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    let matches = ('' + url).match(/(https?|file|ftp):\/\/[^/]+/);
+    if (!matches) throw new Error('Origin not found');
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"367CR":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule') return;
+        // Skip duplicate re-exports when they have the same value.
+        if (key in dest && dest[key] === source[key]) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
 
 },{}]},["39Mbm","5rkFb"], "5rkFb", "parcelRequire5eac")
 

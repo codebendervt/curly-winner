@@ -1,0 +1,9 @@
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _hello = require("hello");
+var _helloDefault = parcelHelpers.interopDefault(_hello);
+_helloDefault.default().then(()=>{
+    const helloWorld = _hello.Hello.new('so have we found it');
+    console.log(helloWorld.message());
+}); // let doc = document.getElementById("hello")
+ // console.log(doc)
+ // doc.setAttribute('data-text','We Work')

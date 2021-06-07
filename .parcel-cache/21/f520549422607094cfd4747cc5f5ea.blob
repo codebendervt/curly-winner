@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pop-up info box — web components</title>
+
+    <link rel="stylesheet" href="/index.HASH_REF_b0c362b4001276cb6d26a5f170bce939.css" type="text/css">
+
+    <script src="/index.HASH_REF_600997d2e70691938ffd5337ea4d4618.js" defer=""></script>
+    <script src="/index.HASH_REF_cd290c6423386c6e51a9b0253f0c9510.js" defer=""></script>  
+     <head-title id="hello" data-text="Hello World"></head-title>
+  </head>
+  <body class="w-screen h-screen bg-black">
+
+    <a href="hello">Hello</a>
+    <script src="/index.HASH_REF_0fa2489aa94c8731ee2aee9f3fafb3e2.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1 @@
+module.exports = require('./bundle-url').getBundleURL() + "wasm_game_of_life_bg.HASH_REF_df3a61d4a88c933931cade57fd08811f.wasm";
