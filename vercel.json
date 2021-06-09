@@ -1,8 +1,0 @@
-{
-    "cleanUrls": true,
-    "rewrites": [
-        { "source": "/", "destination": "./pages" },
-        { "source": "/second", "destination": "./pages/second" }
-    ]
- 
-  }
