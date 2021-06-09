@@ -22,27 +22,32 @@ class HeaderNav extends HTMLElement {
 
         let style = document.querySelector('link[rel="stylesheet"]');
         // let template = document.querySelector('link[rel="import"]').import;
-        // // let template = document.getElementById('my-paragraph');
+        let template = document.getElementById('nav');
 
-        // console.log(template)
-        // let templateContent = template.content;
+     
+        let templateContent = template.content;
 
+       
 
+      
         // Create a shadow root
-        this.attachShadow({ mode: 'open' }).appendChild(style.cloneNode(true));
+        const shadowRoot = this.attachShadow({ mode: 'open' }).appendChild(templateContent.cloneNode(true));
+        // this.shadowRoot.append(style)
+        // Create a shadow root
+         //shadowRoot.append(style);
+        // console.log(shadowRoot)
+        // // write element functionality in here
+        // const wrapper = document.createElement('div');
+        // wrapper.setAttribute('class', 'nav');
+        // document.title = this.getAttribute('data-title')
 
-        // write element functionality in here
-        const wrapper = document.createElement('div');
-        wrapper.setAttribute('class', 'nav');
-        document.title = this.getAttribute('data-title')
+        // // Create some CSS to apply to the shadow dom
+        // //   const style = document.createElement('style');
+        // //   style.textContent = '.wrapper {' +
+        // //   // CSS truncated for brevity
 
-        // Create some CSS to apply to the shadow dom
-        //   const style = document.createElement('style');
-        //   style.textContent = '.wrapper {' +
-        //   // CSS truncated for brevity
-
-        // attach the created elements to the shadow DOM
-        this.shadowRoot.append(wrapper);
+        // // attach the created elements to the shadow DOM
+        // this.shadowRoot.append(wrapper);
 
 
     }
@@ -70,5 +75,11 @@ class HeaderNav extends HTMLElement {
 }
 customElements.define('nav-header', HeaderNav);
 
+
+
+const slottedSpan = document.querySelector('title');
+
+console.log(slottedSpan.assignedSlot);
+console.log(slottedSpan.slot);
 
 

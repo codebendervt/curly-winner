@@ -6,8 +6,23 @@
 
     <link rel="stylesheet" href="./index.css" type="text/css" />
   </head>
-  <body class="canvas_home">
-    <nav-header data-title="Index"></nav-header>
+  <body>
+
+    <template id="nav">
+      <link rel="stylesheet" href="./index.css" type="text/css" />
+      <div class="nav">
+        <div class="w-1/2 flex text-black text-white">
+          <slot name="title"> title</slot>
+        </div>
+        <div class="w-1/2 flex text-black text-white">
+          <slot name="second"> title</slot>
+        </div>
+      </div>
+    </template>
+
+    <nav-header data-title="Index">
+      <span slot="title">hello world</span>
+    </nav-header>
     <script src="../src/index.js"></script>
   </body>
 </html>
