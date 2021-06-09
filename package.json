@@ -24,7 +24,8 @@
     "hello": "file:./src/pkg"
   },
   "alias": {
-    "api": "./api"
+    "api": "./api",
+    "components": "./src/components"
   },
   "targets": {
     "app": {

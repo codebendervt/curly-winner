@@ -19,7 +19,11 @@
  
     .canvas_home  {
      
-      @apply w-screen h-screen bg-black;
+      @apply w-full h-full flex;
+    }
+
+    .nav{
+      @apply w-screen h-24 p-2 bg-black flex;
     }
 
     @import "./second/index.module.css";
