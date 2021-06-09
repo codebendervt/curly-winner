@@ -1,4 +1,6 @@
 import init, { Hello } from "hello";
+import  api from 'api'
+
 
 init()
     .then(() => {
@@ -9,6 +11,9 @@ init()
 
     });
 
+
+
+    api('testing my knowledge')
 
 // let doc = document.getElementById("hello")
 

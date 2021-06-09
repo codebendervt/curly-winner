@@ -1,9 +1,0 @@
-
-
-@tailwind base;
-@tailwind components;
-
-.hello{
-    background-color: black;
-}
-@tailwind utilities;
