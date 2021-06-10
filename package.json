@@ -21,6 +21,7 @@
     "tailwindcss": "^2.1.4"
   },
   "dependencies": {
+    "algosdk": "^1.9.1",
     "hello": "file:./src/pkg"
   },
   "alias": {
