@@ -2,6 +2,7 @@ import 'components/nav'
 
 
 
+// will be importing th react package for more flexibility
 
 window.addEventListener('load', (event) => {
     console.log('page is fully loaded');
