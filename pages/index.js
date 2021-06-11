@@ -1,4 +1,3 @@
-import init, { Hello } from "hello";
 import  api from 'api'
 
 
